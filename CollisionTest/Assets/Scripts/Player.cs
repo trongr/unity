@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 	public float speed = 6;
 	Vector3 velocity;
 	Rigidbody playerrb;
+	int coins;
 
 	// Use this for initialization
 	void Start() {
@@ -23,5 +24,13 @@ public class Player : MonoBehaviour {
 	// Use this for physics updates.
 	void FixedUpdate() {
 		playerrb.position += velocity * Time.fixedDeltaTime;
+	}
+
+	void OnTriggerEnter(Collider col) {
+		if (col.tag == "Coin") {
+			Destroy(col.gameObject);
+			coins++;
+			print("Coins: " + coins);
+		}
 	}
 }
